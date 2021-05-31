@@ -86,7 +86,7 @@ def deal_cards():
 
 # Player 1 Plays.
     print("")
-    hand_value = sum(p1_hand_value)
+    p1_total = sum(p1_hand_value)
     decision = input("What do you want to do? [H]it to add a card. [S]tand to stay with your current hand. (H/S): ")
     while (decision != "H") and (decision != "S"):
         print("")
@@ -106,14 +106,14 @@ def deal_cards():
             for char in aces:
                 if char == 'A':
                     p1_ace_count += 1
-        # Determine Optimal Value of Player 1 Hand.
+        # Determine Optimal Value of Player Hand.
         p1_total_aces = 0
         p1_total = sum(p1_hand_value) # Converts list to a integer value.
         if p1_ace_count >= 1:   # Factors in that Aces can be 11 or 1.
             p1_total_aces = p1_total + 10 # Determines the value as 11. Even with multiple aces, only 1 ace can be worth 11 or hand will bust.
         if (p1_total_aces > p1_total) and (p1_total_aces <= 21): # Compares value with ace as 11 versus 1.
             p1_total = p1_total_aces # Selects the best hand.
-        # Announce the card we took
+        # Announce the card.
         print("You added the " + (p1_card))
         print("Player 1: " + ", ".join(p1_hand) + "     Dealer: " + (dealer_card2))
         print("")
@@ -220,6 +220,3 @@ def instructions():
 def main():
     player_name = introduction()
     deal_cards()
-
-if __name__ == '__main__':
-    main()

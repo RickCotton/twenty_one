@@ -152,6 +152,12 @@ def deal_cards():
         print("Dealer takes a " + (dealer_card))
         print("Player 1: " + ", ".join(p1_hand) + "     Dealer: " + ", ".join(dealer_hand))
 
+# Determine Optimal Value of Player Hand for Immediate Stand (Takes No Cards)
+        p1_total_aces = 0
+        p1_total = sum(p1_hand_value) # Converts list to a integer value.
+        if p1_ace_count >= 1:   # Factors in that Aces can be 11 or 1.
+            p1_total_aces = p1_total + 10 # Determines the value as 11. Even with multiple aces, only 1 ace can be worth 11 or hand will bust.
+
 # Deliver Outcome. Who Won?
     if int(dealer_total) > 21:
         print("")
